@@ -15,34 +15,42 @@ class DateSelector(
     val indexOfYear: Int,
     val indexOfMonth: Int,
     val indexOfDayOfMonth: Int,
-  )
+  ) {
+    companion object {
+      val Empty = State(
+        date = null,
+        listYear = emptyList(),
+        listMonth = emptyList(),
+        listDayOfMonth = emptyList(),
+        indexOfYear = -1,
+        indexOfMonth = -1,
+        indexOfDayOfMonth = -1,
+      )
+    }
+  }
 
   private val _startDate = startDate
   private val _endDate = endDate.coerceAtLeast(startDate)
 
-  private var _state = State(
-    date = null,
-    listYear = emptyList(),
-    listMonth = emptyList(),
-    listDayOfMonth = emptyList(),
-    indexOfYear = -1,
-    indexOfMonth = -1,
-    indexOfDayOfMonth = -1,
-  )
+  private var _state = State.Empty
 
   val state: State get() = _state
 
   fun setDate(date: LocalDate) {
-    val date = date.coerceIn(_startDate, _endDate)
+    val safeDate = date.coerceIn(_startDate, _endDate)
     val oldState = _state
-    val newState = oldState.newState(date).also { _state = it }
+    val newState = oldState.newState(safeDate).also { _state = it }
     if (newState != oldState) {
       onStateChanged(newState)
     }
   }
 
   private fun State.newState(date: LocalDate): State {
-    val listYear = listYear.ifEmpty { (_startDate.year.._endDate.year).toList() }
+    if (this.date == date) return this
+
+    val listYear = listYear.ifEmpty {
+      (_startDate.year.._endDate.year).toList()
+    }
 
     val listMonth = run {
       val end = if (date.year == _endDate.year) _endDate.monthNumber else 12
