@@ -43,10 +43,6 @@ class DateSelector(
   private fun State.newState(date: LocalDate): State {
     if (this.date == date) return this
 
-    val listYear = listYear.ifEmpty {
-      (_startDate.year.._endDate.year).toList()
-    }
-
     val listMonth = run {
       val end = if (date.year == _endDate.year) _endDate.monthNumber else 12
       if (end == listMonth.lastOrNull()) listMonth else (1..end).toList()
