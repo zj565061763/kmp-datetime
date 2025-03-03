@@ -12,10 +12,11 @@ class DateSelector(
     val listYear: List<Int>,
     val listMonth: List<Int>,
     val listDayOfMonth: List<Int>,
-    val indexOfYear: Int,
-    val indexOfMonth: Int,
-    val indexOfDayOfMonth: Int,
-  )
+  ) {
+    val indexOfYear get() = date.year - listYear.first()
+    val indexOfMonth get() = date.monthNumber - listMonth.first()
+    val indexOfDayOfMonth get() = date.dayOfMonth - listDayOfMonth.first()
+  }
 
   private val _startDate: LocalDate = startDate
   private val _endDate: LocalDate = endDate.coerceAtLeast(startDate)
@@ -62,9 +63,6 @@ class DateSelector(
       listYear = listYear,
       listMonth = listMonth,
       listDayOfMonth = listDayOfMonth,
-      indexOfYear = date.year - listYear.first(),
-      indexOfMonth = date.monthNumber - listMonth.first(),
-      indexOfDayOfMonth = date.dayOfMonth - listDayOfMonth.first(),
     )
   }
 
@@ -90,9 +88,6 @@ class DateSelector(
       listYear = listYear,
       listMonth = listMonth,
       listDayOfMonth = listDayOfMonth,
-      indexOfYear = date.year - listYear.first(),
-      indexOfMonth = date.monthNumber - listMonth.first(),
-      indexOfDayOfMonth = date.dayOfMonth - listDayOfMonth.first(),
     )
   }
 }
