@@ -41,7 +41,7 @@ fun LocalDate.fMaxDayOfMonth(): Int {
 
 private fun maxDayOfMonth(year: Int, month: Int): Int {
   return LocalDate(year, month, 1)
-    .plus(value = 1, unit = DateTimeUnit.MONTH)
-    .minus(value = 1, unit = DateTimeUnit.DAY)
+    .plus(1, DateTimeUnit.MONTH)
+    .minus(1, DateTimeUnit.DAY)
     .dayOfMonth
 }

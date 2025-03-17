@@ -13,9 +13,9 @@ class DateSelector(
     val listMonth: List<Int>,
     val listDayOfMonth: List<Int>,
   ) {
-    val indexOfYear get() = date.year - listYear.first()
-    val indexOfMonth get() = date.monthNumber - listMonth.first()
-    val indexOfDayOfMonth get() = date.dayOfMonth - listDayOfMonth.first()
+    val indexOfYear: Int get() = date.year - listYear.first()
+    val indexOfMonth: Int get() = date.monthNumber - listMonth.first()
+    val indexOfDayOfMonth: Int get() = date.dayOfMonth - listDayOfMonth.first()
   }
 
   private val _startDate: LocalDate = startDate
