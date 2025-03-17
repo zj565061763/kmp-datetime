@@ -5,6 +5,7 @@ import kotlinx.datetime.LocalDate
 class DateSelector(
   startDate: LocalDate,
   endDate: LocalDate,
+  initialDate: LocalDate = endDate,
   private val onStateChanged: (State) -> Unit,
 ) {
   data class State(
@@ -24,6 +25,10 @@ class DateSelector(
   private var _state: State? = null
 
   val state: State? get() = _state
+
+  init {
+    setDate(initialDate)
+  }
 
   fun setDate(date: LocalDate) {
     val safeDate = date.coerceIn(_startDate, _endDate)
