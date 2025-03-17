@@ -7,5 +7,5 @@ Kotlin Multiplatform date/time library.
 # Gradle
 
 ```kotlin
-implementation("io.github.zj565061763.kmp:datetime:version")
+implementation("io.github.zj565061763.kmp:datetime:1.0.0-alpha01")
 ```
