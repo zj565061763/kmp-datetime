@@ -95,17 +95,20 @@ class DateSelector(
 fun DateSelector.selectYearWithIndex(index: Int) {
   val state = this.state ?: return
   val year = state.listYear.getOrNull(index) ?: return
-  setDate(state.date.fCopy(year = year))
+  val newDate = state.date.fCopy(year = year)
+  setDate(newDate)
 }
 
 fun DateSelector.selectMonthWithIndex(index: Int) {
   val state = this.state ?: return
   val month = state.listMonth.getOrNull(index) ?: return
-  setDate(state.date.fCopy(month = month))
+  val newDate = state.date.fCopy(month = month)
+  setDate(newDate)
 }
 
 fun DateSelector.selectDayOfMonthWithIndex(index: Int) {
   val state = this.state ?: return
   val dayOfMonth = state.listDayOfMonth.getOrNull(index) ?: return
-  setDate(state.date.fCopy(dayOfMonth = dayOfMonth))
+  val newDate = state.date.fCopy(dayOfMonth = dayOfMonth)
+  setDate(newDate)
 }
